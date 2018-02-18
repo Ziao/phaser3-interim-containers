@@ -26,7 +26,7 @@ Yarn
 yarn add phaser3-interim-containers
 ```
 
-Bower
+Bower (you should move to yarn)
 
 ```
 bower install phaser3-interim-containers
