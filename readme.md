@@ -82,7 +82,7 @@ new Phaser.Game({
 			//You can also alter the children directly and everything will work out
 			//However, since their properties are overwritten as soon as you update the container, you'll have to
 			//alter the properties on the _containerProps object (which is automatically added for you by the container):
-			//All of these properties are relative to the container.
+			//All of these values are relative to the container.
 
 			sprite1._containerProps.rotation -= -0.1;
 			sprite1._containerProps.x = 100;
