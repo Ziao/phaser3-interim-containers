@@ -23,7 +23,8 @@ const Container = Phaser.Class({
 	initialize: function Container(scene, children, config) {
 		Phaser.GameObjects.Group.call(this, scene, children, config);
 
-		for (var key in this.props) {
+		for (var _key in this.props) {
+			var key = _key; //Don't use the same reference
 			this['_' + key] = Phaser.Utils.Objects.GetFastValue(config, key, this.props[key]);
 
 			Object.defineProperty(this, key, {
@@ -94,7 +95,8 @@ const Container = Phaser.Class({
 		//Instead, if you need to change the childs properties after adding it, alter _containerProps instead.
 
 		sprite._containerProps = {};
-		for (var key in this.props) {
+		for (var _key in this.props) {
+			var key = _key; //Don't use the same reference
 			sprite._containerProps['_' + key] = Phaser.Utils.Objects.GetFastValue(sprite, key, this.props[key]);
 
 			Object.defineProperty(sprite._containerProps, key, {
