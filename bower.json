@@ -20,7 +20,6 @@
     "groups",
     "group"
   ],
-  "homepage": "",
   "ignore": [
     "**/.*",
     "node_modules",
