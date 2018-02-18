@@ -1,0 +1,32 @@
+{
+	"name": "Interim Containers for Phaser 3",
+	"version": "1.0.0",
+	"description": "Very basic Interim Containers for Phaser 3.0.0 and up, until Containers officially land.",
+	"engines": {
+		"node": "9.5.0",
+		"npm": "5.5.1"
+	},
+	"main": "./index.js",
+	"author": "Nick Kamer (Ziao) <nick@ziaomedia.com>",
+	"license": "MIT",
+	"licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
+	"bugs": "https://github.com/ziao/phaser3-interim-containers/issues",
+	"repository": {
+		"type": "git",
+		"url": "https://ziao@github.com/ziao/phaser3-interim-containers.git"
+	},
+	"keywords": [
+		"2d",
+		"HTML5",
+		"WebGL",
+		"canvas",
+		"game",
+		"javascript",
+		"phaser",
+		"phaser3",
+		"container",
+		"containers",
+		"groups",
+		"group"
+	  ]
+}

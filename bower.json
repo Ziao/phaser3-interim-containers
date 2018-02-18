@@ -1,0 +1,31 @@
+{
+  "name": "Interim Containers for Phaser 3",
+  "description": "Very basic Interim Containers for Phaser 3.0.0 and up, until Containers officially land.",
+  "main": "./index.js",
+  "authors": [
+    "Nick Kamer (Ziao) <nick@ziaomedia.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "2d",
+    "HTML5",
+    "WebGL",
+    "canvas",
+    "game",
+    "javascript",
+    "phaser",
+    "phaser3",
+    "container",
+    "containers",
+    "groups",
+    "group"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
