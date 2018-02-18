@@ -22,20 +22,23 @@ const Container = Phaser.Class({
 
 	initialize: function Container(scene, children, config) {
 		Phaser.GameObjects.Group.call(this, scene, children, config);
+		var that = this;
 
 		for (var _key in this.props) {
-			var key = _key; //Don't use the same reference
-			this['_' + key] = Phaser.Utils.Objects.GetFastValue(config, key, this.props[key]);
+			(function() {
+				var key = _key; //Don't use the same reference
+				that['_' + key] = Phaser.Utils.Objects.GetFastValue(config, key, that.props[key]);
 
-			Object.defineProperty(this, key, {
-				get: function() {
-					return this['_' + key];
-				},
-				set: function(value) {
-					this['_' + key] = value;
-					this._updateChildren();
-				},
-			});
+				Object.defineProperty(that, key, {
+					get: function() {
+						return this['_' + key];
+					},
+					set: function(value) {
+						this['_' + key] = value;
+						that._updateChildren();
+					},
+				});
+			})();
 		}
 
 		this._updateChildren();
@@ -96,18 +99,21 @@ const Container = Phaser.Class({
 
 		sprite._containerProps = {};
 		for (var _key in this.props) {
-			var key = _key; //Don't use the same reference
-			sprite._containerProps['_' + key] = Phaser.Utils.Objects.GetFastValue(sprite, key, this.props[key]);
+			(function() {
+				var key = _key; //Don't use the same reference
+				sprite._containerProps['_' + key] = Phaser.Utils.Objects.GetFastValue(sprite, key, that.props[key]);
 
-			Object.defineProperty(sprite._containerProps, key, {
-				get: function() {
-					return this['_' + key];
-				},
-				set: function(value) {
-					this['_' + key] = value;
-					that._updateChild(sprite);
-				},
-			});
+				Object.defineProperty(sprite._containerProps, key, {
+					get: function() {
+						return this['_' + key];
+					},
+					set: function(value) {
+						// console.log(key);
+						this['_' + key] = value;
+						that._updateChild(sprite);
+					},
+				});
+			})();
 		}
 	},
 });
