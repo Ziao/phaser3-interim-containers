@@ -1,7 +1,7 @@
 {
 	"name": "Interim Containers for Phaser 3",
 	"version": "1.0.0",
-	"description": "Very basic Interim Containers for Phaser 3.0.0 and up, until Containers officially land.",
+	"description": "Basic Interim Containers for Phaser 3.0.0 and up, until Containers officially land.",
 	"engines": {
 		"node": "9.5.0",
 		"npm": "5.5.1"

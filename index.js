@@ -1,12 +1,11 @@
 /**
  * @name Interim Containers for Phaser 3
  * @author Nick Kamer (Ziao on Github) <nick@ziaomedia.com
- * @description Very basic Interim Containers for Phaser 3.0.0 and up, until Containers officially land.
+ * @description Basic Interim Containers for Phaser 3.0.0 and up, until Containers officially land.
  * Supported properties: x, y, alpha, rotation, scale. More can be easily added in the future.
- * You can use actions on the children like normal, so long as they don't touch the properties mentioned above as they are overwritten on every update.
+ * You can use Actions on the children like normal, so long as they don't touch the properties mentioned above as they are overwritten on every update.
  *
  * This assumes Phaser to be available in the global namespace, if not, uncomment the import on line 12 or 13 (depending on your environment).
- * Code has been written in old-school javascript as much as possible, so no transpiling should be neccesary.
  */
 
 // import Phaser from 'phaser';

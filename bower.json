@@ -1,6 +1,6 @@
 {
   "name": "Interim Containers for Phaser 3",
-  "description": "Very basic Interim Containers for Phaser 3.0.0 and up, until Containers officially land.",
+  "description": "Basic Interim Containers for Phaser 3.0.0 and up, until Containers officially land.",
   "main": "./index.js",
   "authors": [
     "Nick Kamer (Ziao) <nick@ziaomedia.com>"
