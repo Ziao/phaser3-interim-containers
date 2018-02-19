@@ -45,7 +45,7 @@ Interim Containers function very similar to Groups, with two important gotcha's:
 - You must use addChild() or createChild() on the Container, instead of add() and create(). They behave exactly as you'd expect. This is due to the way Phaser's Class system and inheritance works. I couldn't find a clean way to inject my own code there.
 - Use `child._containerProps.property` instead of directly changing a child's properties.
 
-Supported properties (please update this list when submitting a PR):
+Supported properties for both the Container and che children (please update this list when submitting a PR):
 - x
 - y
 - alpha
