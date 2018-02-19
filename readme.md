@@ -41,8 +41,9 @@ Simply download the index.js file and include it in your HTML file.
 
 ### Usage
 
-Interim Containers function very similar to Groups, with a few important gotcha's;
-Use `child._containerProps.property` instead of directly changing a child's properties.
+Interim Containers function very similar to Groups, with two important gotcha's:
+- You must use addChild() or createChild() on the Container, instead of add() and create(). They behave exactly as you'd expect. This is due to the way Phaser's Class system and inheritance works. I couldn't find a clean way to inject my own code there.
+- Use `child._containerProps.property` instead of directly changing a child's properties.
 
 Supported properties (please update this list when submitting a PR):
 - x
@@ -50,6 +51,8 @@ Supported properties (please update this list when submitting a PR):
 - alpha
 - rotation
 - scale
+
+### Example
 
 ``` js
 
