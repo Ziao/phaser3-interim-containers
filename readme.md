@@ -102,6 +102,7 @@ new Phaser.Game({
 - Example code could use some work
 - Support more properties
 - Find a clean way to support changing values on Sprites directly, without breaking or littering everything
+- Confirm that Tweens work, and make them work if they don't
 
 ## Contributing
 
