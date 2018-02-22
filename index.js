@@ -18,7 +18,7 @@ const Container = Phaser.Class({
 	// Mixins: [Phaser.GameObjects.Components.Alpha, Phaser.GameObjects.Components.Transform],
 
 	//Defaults
-	props: { x: 0, y: 0, alpha: 1, rotation: 0, scale: 1 },
+	props: { x: 0, y: 0, alpha: 1, rotation: 0, scale: 1, flipX: false, flipY: false },
 
 	initialize: function Container(scene, children, config) {
 		Phaser.GameObjects.Group.call(this, scene, children, config);
@@ -74,8 +74,10 @@ const Container = Phaser.Class({
 
 	_updateChild: function(sprite) {
 		// console.log('U');
-		sprite.x = this.x + sprite._containerProps.x * this.scale;
-		sprite.y = this.y + sprite._containerProps.y * this.scale;
+		sprite.flipX = this.flipX != sprite._containerProps.flipX;
+		sprite.flipY = this.flipY != sprite._containerProps.flipY;
+		sprite.x = this.x + (sprite._containerProps.x * sprite.flipX ? 1 : -1) * this.scale;
+		sprite.y = this.y + (sprite._containerProps.y * sprite.flipX ? 1 : -1) * this.scale;
 		sprite.scaleX = this.scale * sprite._containerProps.scale;
 		sprite.scaleY = sprite.scaleX;
 		sprite.rotation = this.rotation + sprite._containerProps.rotation;
