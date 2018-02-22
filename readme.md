@@ -51,6 +51,8 @@ Supported properties for both the Container and che children (please update this
 - alpha
 - rotation
 - scale
+- flipX
+- flipY
 
 ### Example
 
