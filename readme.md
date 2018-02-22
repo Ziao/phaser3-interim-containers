@@ -48,7 +48,7 @@ Interim Containers function very similar to Groups, with two important gotcha's:
 Supported properties for both the Container and che children (please update this list when submitting a PR):
 - x
 - y
-- alpha
+- alpha (it's currently impossible to implement this correctly. Eg: setting the container to 0.5 will render all the children at 0.5, making them see-through when overlapping)
 - rotation
 - scale
 - flipX
@@ -115,8 +115,8 @@ new Phaser.Game({
 
 - Example code could use some work
 - Support more properties
-- Find a clean way to support changing values on Sprites directly, without breaking or littering everything
-- Confirm that Tweens work, and make them work if they don't
+- Find a clean way to support changing values on Sprites directly, without breaking or littering everything (consider defineProperty on them, as long as I'm good about cleaning them later)
+- Confirm that Tweens work -> Done. They work fine!
 
 ## Contributing
 
