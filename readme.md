@@ -48,7 +48,7 @@ Interim Containers function very similar to Groups, with two important gotcha's:
 Supported properties for both the Container and che children (please update this list when submitting a PR):
 - x
 - y
-- alpha
+- alpha (it's currently impossible to implement this correctly. Eg: setting the container to 0.5 will render all the children at 0.5, making them see-through when overlapping)
 - rotation
 - scale
 - flipX
