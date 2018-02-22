@@ -17,24 +17,39 @@ const Container = Phaser.Class({
 	//Could include these later, maybe.
 	// Mixins: [Phaser.GameObjects.Components.Alpha, Phaser.GameObjects.Components.Transform],
 
-	//Defaults
-	props: { x: 0, y: 0, alpha: 1, rotation: 0, scale: 1, flipX: false, flipY: false },
+	props: null,
 
 	initialize: function Container(scene, children, config) {
+		let watchedProps = Phaser.Utils.Objects.GetFastValue(config, 'watch', null);
+		let supportedProps = { x: 0, y: 0, alpha: 1, rotation: 0, scale: 1, flipX: false, flipY: false };
+		if (watchedProps && watchedProps.constructor === Array && watchedProps.length > 0) {
+			this.props = {};
+			for (let i = 0; i < watchedProps.length; i++) {
+				if (supportedProps[watchedProps[i]] === undefined) return;
+				this.props[watchedProps[i]] = supportedProps[watchedProps[i]];
+			}
+		} else {
+			this.props = supportedProps;
+		}
+
+		console.log(this.props);
+
 		Phaser.GameObjects.Group.call(this, scene, children, config);
 		var that = this;
 
 		for (var _key in this.props) {
 			(function() {
 				var key = _key; //Don't use the same reference
-				that['_' + key] = Phaser.Utils.Objects.GetFastValue(config, key, that.props[key]);
+				var uKey = '_' + key; //Faster than concatenating on every get()
+
+				that[uKey] = Phaser.Utils.Objects.GetFastValue(config, key, that.props[key]);
 
 				Object.defineProperty(that, key, {
 					get: function() {
-						return this['_' + key];
+						return this[uKey];
 					},
 					set: function(value) {
-						this['_' + key] = value;
+						this[uKey] = value;
 						that._updateChildren();
 					},
 				});
@@ -74,22 +89,60 @@ const Container = Phaser.Class({
 
 	_updateChild: function(sprite) {
 		// console.log('U');
-		sprite.flipX = this.flipX != sprite._containerProps.flipX;
-		sprite.flipY = this.flipY != sprite._containerProps.flipY;
-		sprite.x = this.x + (sprite._containerProps.x * sprite.flipX ? 1 : -1) * this.scale;
-		sprite.y = this.y + (sprite._containerProps.y * sprite.flipX ? 1 : -1) * this.scale;
-		sprite.scaleX = this.scale * sprite._containerProps.scale;
-		sprite.scaleY = sprite.scaleX;
-		sprite.rotation = this.rotation + sprite._containerProps.rotation;
-		sprite.alpha = this.alpha * sprite._containerProps.alpha;
+		if (this.props.flipX !== undefined) {
+			sprite.flipX = this.flipX != sprite._containerProps.flipX;
+		} else if (sprite._containerProps.flipX !== undefined) {
+			sprite.flipX = sprite._containerProps.flipX;
+		}
 
-		//Todo
-		// sprite.flipX = this.flipped;
-		// Phaser.Actions.FlipX([sprite.sprite], this.position, this.rotation);
+		if (this.props.flipY !== undefined) {
+			sprite.flipY = this.flipY != sprite._containerProps.flipY;
+		} else if (sprite._containerProps.flipY !== undefined) {
+			sprite.flipY = sprite._containerProps.flipY;
+		}
 
-		if (this.rotation !== 0) {
-			//todo: this can be better optimized by calling it for all children at once (prevents creating a bunch of 1-length arrays)
-			Phaser.Actions.RotateAround([sprite], this, this.rotation);
+		if (this.props.x !== undefined && this.props.scale !== undefined) {
+			sprite.x = this.x + (sprite._containerProps.x * sprite.flipX ? -1 : 1) * this.scale;
+		} else if (this.props.x !== undefined) {
+			sprite.x = this.x + (sprite._containerProps.x * sprite.flipX ? -1 : 1);
+		} else if (sprite._containerProps.x !== undefined) {
+			sprite.x = sprite._containerProps.x;
+		}
+
+		if (this.props.y !== undefined && this.props.scale !== undefined) {
+			sprite.y = this.y + (sprite._containerProps.y * sprite.flipX ? -1 : 1) * this.scale;
+		} else if (this.props.y !== undefined) {
+			sprite.y = this.y + (sprite._containerProps.y * sprite.flipX ? -1 : 1);
+		} else if (sprite._containerProps.y !== undefined) {
+			sprite.y = sprite._containerProps.y;
+		}
+
+		if (this.props.scale !== undefined) {
+			sprite.scaleX = this.scale * sprite._containerProps.scale;
+			sprite.scaleY = sprite.scaleX;
+		} else {
+			if (sprite._containerProps.scaleX !== undefined) {
+				sprite.scaleX = sprite._containerProps.scaleX;
+			}
+			if (sprite._containerProps.scaleY !== undefined) {
+				sprite.scaleY = sprite._containerProps.scaleY;
+			}
+		}
+
+		if (this.props.rotation !== undefined) {
+			sprite.rotation = this.rotation + sprite._containerProps.rotation;
+			if (this.rotation !== 0) {
+				//todo: this can be better optimized by calling it for all children at once (prevents creating a bunch of 1-length arrays)
+				Phaser.Actions.RotateAround([sprite], this, this.rotation);
+			}
+		} else if (sprite._containerProps.rotation !== undefined) {
+			sprite.rotation = sprite._containerProps.rotation;
+		}
+
+		if (this.props.alpha !== undefined) {
+			sprite.alpha = this.alpha * sprite._containerProps.alpha;
+		} else if (sprite._containerProps.alpha !== undefined) {
+			sprite.alpha = sprite._containerProps.alpha;
 		}
 	},
 

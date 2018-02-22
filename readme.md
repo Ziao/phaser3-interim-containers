@@ -54,6 +54,9 @@ Supported properties for both the Container and che children (please update this
 - flipX
 - flipY
 
+Starting at 1.2.0, you are able to provide a list of properties that will be watched using the watch option. Please see the example. Doing so will increase the performance of containers that are updated all the time (for example, using tweens).
+If you do not provide this option, all supported properties will be watched.
+
 ### Example
 
 ``` js
@@ -65,7 +68,13 @@ new Phaser.Game({
 		create: function(){
 
 			//Creating a container (options are optional)
-			container = this.add.container({x:100, y: 50, alpha: 0.9, rotation: 1.3});
+			container = this.add.container({
+				x:100, 
+				y: 50, 
+				alpha: 0.9, 
+				rotation: 1.3, 
+				watch: ['x', 'y', 'rotation','alpha']
+			});
 
 			//Create a sprite directly on the container, just as you would with group.create
 			sprite1 = container.createChild(200, 200, 'spaceship');
@@ -84,10 +93,13 @@ new Phaser.Game({
 			container.rotation += 0.01;
 			container.scale += 0.01;
 
-			//You can also alter the children directly and everything will work out
-			//However, since their properties are overwritten as soon as you update the container, you'll have to
-			//alter the properties on the _containerProps object (which is automatically added for you by the container):
-			//All of these values are relative to the container.
+			// You can also alter the children directly and 
+			// everything will work out.
+			// However, since their properties are overwritten 
+			// as soon as you update the container, you'll have
+			// to alter the properties on the _containerProps 
+			// object (which is automatically added for you by the container):
+			// All of these values are relative to the container.
 
 			sprite1._containerProps.rotation -= -0.1;
 			sprite1._containerProps.x = 100;
