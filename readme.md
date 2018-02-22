@@ -26,7 +26,7 @@ Yarn
 yarn add phaser3-interim-containers
 ```
 
-Bower
+Bower (you should move to yarn)
 
 ```
 bower install phaser3-interim-containers
@@ -41,15 +41,18 @@ Simply download the index.js file and include it in your HTML file.
 
 ### Usage
 
-Interim Containers function very similar to Groups, with a few important gotcha's;
-Use `child._containerProps.property` instead of directly changing a child's properties.
+Interim Containers function very similar to Groups, with two important gotcha's:
+- You must use addChild() or createChild() on the Container, instead of add() and create(). They behave exactly as you'd expect. This is due to the way Phaser's Class system and inheritance works. I couldn't find a clean way to inject my own code there.
+- Use `child._containerProps.property` instead of directly changing a child's properties.
 
-Supported properties (please update this list when submitting a PR):
+Supported properties for both the Container and che children (please update this list when submitting a PR):
 - x
 - y
 - alpha
 - rotation
 - scale
+
+### Example
 
 ``` js
 
@@ -82,7 +85,7 @@ new Phaser.Game({
 			//You can also alter the children directly and everything will work out
 			//However, since their properties are overwritten as soon as you update the container, you'll have to
 			//alter the properties on the _containerProps object (which is automatically added for you by the container):
-			//All of these properties are relative to the container.
+			//All of these values are relative to the container.
 
 			sprite1._containerProps.rotation -= -0.1;
 			sprite1._containerProps.x = 100;
@@ -99,6 +102,7 @@ new Phaser.Game({
 - Example code could use some work
 - Support more properties
 - Find a clean way to support changing values on Sprites directly, without breaking or littering everything
+- Confirm that Tweens work, and make them work if they don't
 
 ## Contributing
 
