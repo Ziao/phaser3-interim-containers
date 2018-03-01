@@ -117,6 +117,7 @@ new Phaser.Game({
 - Support more properties
 - Find a clean way to support changing values on Sprites directly, without breaking or littering everything (consider defineProperty on them, as long as I'm good about cleaning them later)
 - Confirm that Tweens work -> Done. They work fine!
+- Nested containers
 
 ## Contributing
 
