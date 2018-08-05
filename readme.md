@@ -1,3 +1,5 @@
+# WARNING: This project is now deprecated as official Containers are now a thing. See [https://phaser.io/phaser3/devlog/120](This blog post)
+
 # Interim Containers for Phaser 3
 
 ### Basic containers for Phaser 3 until they officially land.
